@@ -108,30 +108,58 @@ header > h1 {
 
 .descr > p {
     line-height: 1.5rem;
+    padding-bottom: 2rem;
 }
 
 .classifica {
     display: flex;
-    flex-direction: row;
-    align-items: flex-end;
+    flex-direction: column;
+    row-gap: 2rem;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.title h2 {
+    text-transform: uppercase;
+} 
+
+.top-3 {
+    display: grid;
+    grid-template-columns: 10% 1fr 1fr 10%;
+    grid-template-rows: 1fr 1fr 1fr;
+
+    height: min(40vh, 20rem);
+    min-width: 100%;
+
+}
+
+
+.box1, .box2, .box3 {
+    margin: 1rem;
+    border-radius: 20px;
+    width: min(25vw, 10rem);
+    height: min(15vh, 7rem);
 }
 
 .box1 {
-    background-color: red;
-    height: 100px;
-    width: 100px;
+    grid-row: 2/3;
+    grid-column: 2/3;
+    background-color: #34495e;
+    
 }
 
 .box2 {
-    background-color: green;
-    height: 300px;
-    width: 300px;
+    grid-column: 3/4;
+    background-color: #34495e;
+    
+    border-radius: 20px;
 }
 
 .box3 {
-    background-color: yellow;
-    height: 200px;
-    width: 200px;
-
+    grid-row: 3/4;
+    grid-column: 3/4;
+    background-color: #34495e;
+    
 }
 

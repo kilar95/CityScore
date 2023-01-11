@@ -21,6 +21,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/searchbar.css">
     <link rel="stylesheet" href="css/media-queries.css">
     <link rel="stylesheet" href="css/footer.css">
 
@@ -32,6 +33,7 @@
 
     <!-- JS -->
     <script src="js/main.js" defer></script>
+    <script src="js/views/searchBar.js" defer></script>
 
     <title>City Score - Best cities to live in</title>
 </head>
@@ -40,8 +42,6 @@
     <div class="container">
         <div class="navbar">
             <a class="logo" href="#">City Score</a>
-            <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-controls="main-nav"><span
-                    aria-expanded="false"></span></button>
             <nav id="main-nav" class="main-nav" data-visible="true">
                 <a href="#" class="nav-link">Home</a>
                 <a href="#" class="nav-link">All cities</a> <!-- da implementare -->
@@ -49,31 +49,39 @@
         </div>
         <header>
             <h1 class="title">City Score</h1>
-
-        </header>
-        <section class="search">
-            <div class="search-bar">
-                <input type="text" class="input" name="txt">
+            <div class="search">
+                <h2>Search</h2>
+                <div class="search-bar">
+                    <input type="text" class="input" name="txt">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <!-- <div class="results"></div> -->
             </div>
-            <i class="fas fa-search"></i>
-            <!-- <div class="results"></div> -->
-        </section>
+        </header>
         <main class="main">
             <section class="descr">
                 <h2>Discover the best cities to live in!</h2>
                 <p>You can check the life quality score of <strong>266</strong> cities all around the world! <br>
                     The global rating is based on secondary scores such as housing, cost of living, safety, healthcare,
                     education, environmental quality, economy and more. </p>
+                
             </section>
             <section class="classifica">
-                <div class="box1"></div>
-                <div class="box2"></div>
-                <div class="box3"></div>
+                <div class="title">
+                    <h2>Top 3 cities:</h2>
+                </div>
+                <div class="top-3">
+                    <div class="box1"></div>
+                    <div class="box2"></div>
+                    <div class="box3"></div>
+                </div>
+
             </section>
         </main>
 
         <footer>
-            Powered by <a href="https://developers.teleport.org/"> Teleport</a>
+            <!-- <p>© 2023 - Ilaria Bertoldi - </p> -->
+            <p> Powered by <a href="https://developers.teleport.org/"><strong> Teleport</strong></a></p>
         </footer>
 
     </div>

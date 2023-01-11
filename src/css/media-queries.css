@@ -1,10 +1,9 @@
-
 /* ------------------- */
 /*      main content   */
 /* ------------------- */
 
 @media (min-width: 750px) {
-    
+
     .main {
         flex-direction: row;
         justify-content: center;
@@ -12,13 +11,41 @@
     }
 
     .descr {
-        max-width: 50vw;
+        max-width: 30vw;
     }
-    
-    .descr > p {
+
+    .descr>p {
         line-height: 2.3rem;
-        max-width: 70%;
         margin-top: 2rem;
+    }
+
+    .top-3 {
+        height: auto;
     }
 }
 
+
+/* ------------------- */
+/*      search bar     */
+/* ------------------- */
+
+
+@media (min-width: 750px) {
+    .search:hover input {
+        max-width: 20vw;
+    }
+
+    .active {
+        width: 20vw;
+    }
+}
+
+/* ------------------- */
+/*      main content   */
+/* ------------------- */
+
+@media (min-width: 750px) {
+    .top-3 {
+        min-width: 30vw;
+    }
+}

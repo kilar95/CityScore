@@ -4,15 +4,25 @@
 /* ------------------- */
 
 footer {
-    height: 8vh;
+    height: 5vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #34495e;
+    color: #34495ecb;
+    background-color: #f4f4f4;
     border: 1px solid #34495e;
     margin-top: auto;
 }
 
-footer > a {
-    color: #718daa;
+footer a {
+    color: #34495eb0;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #49688b65;
+}
+
+footer > p {
+    font-size: 1.5vh;
 }
