@@ -20,12 +20,16 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/media-queries.css">
+    <link rel="stylesheet" href="css/footer.css">
 
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
+    <!-- Font Awesome  -->
+    <script src="https://kit.fontawesome.com/fdbf26b506.js" crossorigin="anonymous"></script>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
-   
+
     <!-- JS -->
     <script src="js/main.js" defer></script>
 
@@ -34,19 +38,44 @@
 
 <body>
     <div class="container">
+        <div class="navbar">
+            <a class="logo" href="#">City Score</a>
+            <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-controls="main-nav"><span
+                    aria-expanded="false"></span></button>
+            <nav id="main-nav" class="main-nav" data-visible="true">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#" class="nav-link">All cities</a> <!-- da implementare -->
+            </nav>
+        </div>
         <header>
             <h1 class="title">City Score</h1>
-            <h2>Discover the best cities to live in</h2>
-            <div class="app-description">
-                <p>You can check the life quality score of 266 cities all around the world! <br>
-                    The global rating is based on secondary scores such as housing, cost of living, safety, healthcare,
-                    education, environmental quality, economy and more. </p>
-            </div>
+
         </header>
         <section class="search">
-            <div class="search-bar"></div>
-            <div class="results"></div>
+            <div class="search-bar">
+                <input type="text" class="input" name="txt">
+            </div>
+            <i class="fas fa-search"></i>
+            <!-- <div class="results"></div> -->
         </section>
+        <main class="main">
+            <section class="descr">
+                <h2>Discover the best cities to live in!</h2>
+                <p>You can check the life quality score of <strong>266</strong> cities all around the world! <br>
+                    The global rating is based on secondary scores such as housing, cost of living, safety, healthcare,
+                    education, environmental quality, economy and more. </p>
+            </section>
+            <section class="classifica">
+                <div class="box1"></div>
+                <div class="box2"></div>
+                <div class="box3"></div>
+            </section>
+        </main>
+
+        <footer>
+            Powered by <a href="https://developers.teleport.org/"> Teleport</a>
+        </footer>
+
     </div>
 
 
