@@ -20,10 +20,12 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/searchbar.css">
-    <link rel="stylesheet" href="css/media-queries.css">
+    <link rel="stylesheet" href="css/desktop.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/divider.css">
 
 
     <!-- Font Awesome  -->
@@ -33,13 +35,15 @@
 
     <!-- JS -->
     <script src="js/main.js" defer></script>
-    <script src="js/views/searchBar.js" defer></script>
+    <script type='module' src="js/views/searchBar.js" defer></script>
+    <script type="module" src="js/api/teleportAPI.js" defer></script>
 
     <title>City Score - Best cities to live in</title>
 </head>
 
 <body>
     <div class="container">
+
         <div class="navbar">
             <a class="logo" href="#">City Score</a>
             <nav id="main-nav" class="main-nav" data-visible="true">
@@ -47,17 +51,19 @@
                 <a href="#" class="nav-link">All cities</a> <!-- da implementare -->
             </nav>
         </div>
+
         <header>
             <h1 class="title">City Score</h1>
             <div class="search">
                 <h2>Search</h2>
                 <div class="search-bar">
                     <input type="text" class="input" name="txt">
+                    <div class="results hidden"></div>
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
-                <!-- <div class="results"></div> -->
             </div>
         </header>
+
         <main class="main">
             <section class="descr">
                 <h2>Discover the best cities to live in!</h2>
@@ -66,6 +72,12 @@
                     education, environmental quality, economy and more. </p>
                 
             </section>
+    
+            <div class="divider">
+                <div class="dividermask"></div>
+                <span><i class="fa-solid fa-city"></i></span>
+            </div>
+              
             <section class="classifica">
                 <div class="title">
                     <h2>Top 3 cities:</h2>
@@ -75,12 +87,10 @@
                     <div class="box2"></div>
                     <div class="box3"></div>
                 </div>
-
             </section>
         </main>
 
         <footer>
-            <!-- <p>© 2023 - Ilaria Bertoldi - </p> -->
             <p> Powered by <a href="https://developers.teleport.org/"><strong> Teleport</strong></a></p>
         </footer>
 
