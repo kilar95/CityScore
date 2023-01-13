@@ -1,65 +1,60 @@
-import citiesNames from "../api/teleportAPI.js";
+import { citiesNames } from '../api/teleportAPI.js'
+import { citiesData } from '../api/teleportAPI.js';
 
-// const searchBar = document.querySelector('.search-bar');
+// import { citiesHref } from '../api/teleportAPI.js'
+
 const searchInput = document.querySelector('.input');
 const resultsContainer = document.querySelector('.results');
-const searchIcon = document.querySelector('i');
+let hintBoxElements; // li elements inside hint box
+let citiesList; // ul element inside hint box
 
 
+
+// search bar events
 
 searchInput.addEventListener('mouseover', () => setActive());
-
 searchInput.addEventListener('keyup', (e) => {
-    if (e.target.value) {
+    if (searchInput.value) {
         setActive();
         autocomplete(e);
     } else {
-        removeActive();
-        resultsContainer.classList.add('hidden');
+        setTimeout(removeActive, 5000);
+        resultsContainer.setAttribute('hidden', true);
     }
-})
-
+});
 document.addEventListener('click', (e) => {
-    if (e.target.contains(searchInput) || e.target.contains(searchIcon)) {
-        setActive();
-        searchInput.focus();
-        setTimeout(clear, 4000);
-    } else {
+    if (e.target !== searchInput && !searchInput.contains(e.target) && !resultsContainer.contains(e.target)) {
         removeActive();
+    } else {
+        setActive();
     }
 });
 
+// citiesList.addEventListener('keydown', arrowKeysHandle(e));
 
-searchInput.addEventListener('mouseleave', () => {
-    if (searchInput.value == '') {
-        setTimeout(clear, 4000);
-        searchInput.blur();
-    }
-})
 
+// activating and disactivating search input 
 
 function setActive() {
     if (searchInput.classList.contains('active')) {
         return;
     } else {
         searchInput.classList.add('active');
+        searchInput.focus();
     }
 }
 
 function removeActive() {
     if (searchInput.classList.contains('active')) {
         searchInput.classList.remove('active');
+        searchInput.value = '';
+        resultsContainer.setAttribute('hidden', true);
+        searchInput.blur();
     }
 }
 
 
-function clear() {
-    if (!searchInput.value) {
-        searchInput.classList.remove('active');
-    } else {
-        return;
-    }
-}
+// displaying hints in the results box
 
 function autocomplete(e) {
     let matches = [];
@@ -70,36 +65,38 @@ function autocomplete(e) {
             return city.toLowerCase().startsWith(e.target.value.toLowerCase());
         })
 
-        matches.forEach(city => {
-            suggestions += `<li onclick="select(event)">${city}</li>`
-        })
+        suggestions = matches.map(city => {
+            return `<li>${city}</li>`
+        }).join('');
 
         resultsContainer.innerHTML = `<ul>${suggestions}</ul>`;
+        hintBoxElements = document.querySelectorAll('li');
+        citiesList = resultsContainer.querySelector('ul');
 
-        if (resultsContainer.innerHTML) {
-            resultsContainer.classList.remove('hidden');
+        arrowKeysHandle(e.key, citiesList);
+
+
+        // hint box events
+        hintBoxElements.forEach(element => {
+            element.addEventListener('click', select);
+        })
+
+        if (suggestions) {
+            resultsContainer.removeAttribute('hidden');
+        } else {
+            resultsContainer.setAttribute('hidden', true);
         }
     }
-
-    // suggestions = matches.map(data => {
-    //     return data = '<li>' + data + '</li>'; 
-    // })
-
-    // showSuggestions(suggestions);
-    // let completeList = resultsContainer.querySelectorAll('li');
-    // completeList.forEach(item => {
-    //     item.setAttribute('onlick', 'select(event)');
-    // })
-    //  if (e.target.value == '') {
-    //     searchInput.classList.remove('active');
-    //     resultsContainer.classList.add('hidden');
-
 }
 
 
 function select(e) {
-    resultsContainer.innerHTML = '';
     searchInput.value = e.target.innerHTML;
+    resultsContainer.setAttribute('hidden', true);
+}
 
-    resultsContainer.classList.add = 'hidden';
+
+// handling keyboard events in the results box 
+function arrowKeysHandle(e) {
+    console.log(e.key.value);
 }

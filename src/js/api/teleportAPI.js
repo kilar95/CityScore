@@ -1,24 +1,34 @@
-let citiesList;
 let citiesNames = []; 
+let citiesData;
+// let citiesHref = [];
 
-// const searchBar = document.querySelector('.search-bar');
-// const searchInput = document.querySelector('.input');
-// const resultsContainer = document.querySelector('.results');
-// const itemLink = resultsContainer.querySelector('a');
 
 // let's fetch the data from the API 
 
-fetch('https://api.teleport.org/api/urban_areas/')
-.then(response => {
-    const data = response.json();
-    return data;
-}).then(data => {
-    citiesList = data._links[`ua:item`];
-    citiesList.forEach(objectItem => {
-        citiesNames.push(objectItem.name);
-    })
-    console.log(citiesNames);
-}).catch(err => console.log(err));
+    fetch('https://api.teleport.org/api/urban_areas/')
+    .then(response => {
+        const data = response.json();
+        return data;
+    }).then(data => {
+        citiesData = data._links[`ua:item`];
+
+        citiesData.forEach(objectItem => {
+            citiesNames.push(objectItem.name);
+        });
+
+        // citiesData.forEach(objItem => {
+        //     citiesHref.push(objItem.href);
+        // });
+        
+    }).catch(err => console.log(err));    
+
+    // console.log(citiesNames);
+    // setTimeout(clg, 5000);
+
+    // function clg() {
+    //     console.log(citiesData);
+    // }
 
 
-export default citiesNames;
+export { citiesNames };
+export { citiesData };

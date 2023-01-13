@@ -12,7 +12,6 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        /* column-gap: 2rem; */
     }
 
     .descr {
@@ -31,9 +30,6 @@
         padding-bottom: 0;
     }
 
-    /* .top-3 {
-        height: auto;
-    } */
 }
 
 
@@ -43,11 +39,11 @@
 
 
 @media (min-width: 850px) {
-    /* .search:hover input {
-        max-width: 20vw;
-    } */
-
      .active {
+        width: 20vw;
+    }
+
+    .results {
         width: 20vw;
     }
 }
