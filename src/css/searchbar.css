@@ -51,13 +51,6 @@
     z-index: 2;
 }
 
-.input:hover i,
-.input:focus i{
-    color: #34495e;
-    cursor: pointer;
-    z-index: 10;
-}
-
 .results {
     padding-top: 5px;
     position: absolute;
@@ -93,7 +86,8 @@
     display: block;
   }
 
-  .results li:hover{
+  .results li:hover, 
+  .results li.selected {
     background: #efefef;
   }
 

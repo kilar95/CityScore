@@ -2,8 +2,7 @@
 /*      main content   */
 /* ------------------- */
 
-@media (min-width: 1024px) {
-
+@media (min-width: 1201px) {
     .container {
         height: 100vh;
     }
@@ -14,21 +13,78 @@
         align-items: center;
     }
 
-    .descr {
+    .descr, .compare {
         text-align: start;
         max-width: 30vw;
         padding-inline: 1rem;
+        margin-bottom: 2rem;
     }
 
-    .descr>p {
-        line-height: 2.3rem;
+
+    .descr > p, .compare > p {
         margin-top: 2rem;
+        padding-bottom: 1rem;
     }
 
-    .title h2 {
-        margin-top: 2rem;
-        padding-bottom: 0;
+    .icon, .icon2 {
+        float: left;
+        position: relative;
     }
+
+    .icon {
+        margin: 0 2rem 3rem 0;
+        top: 2rem;
+    }
+
+    .icon2 {
+        margin: 0 2rem 1rem 0;
+        top: 1rem;
+    }
+
+}
+
+@media (min-width: 1024px) and (max-width: 1200px)  {
+
+    h1 {
+        font-size: 3rem;
+    }
+    .container {
+        height: 100vh;
+    }
+
+    .navbar {
+        font-size: small;
+    }
+
+    .main {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .descr, .compare {
+        text-align: start;
+        max-width: 30vw;
+        padding-inline: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .descr h2, .compare h2 {
+        line-height: 1.5;
+    }
+
+
+    .descr > p, .compare > p {
+        line-height: 1rem;
+        margin-top: 2rem;
+        padding-bottom: 1rem;
+    }
+
+    .icon, .icon2 {
+        display: none;
+    }
+    
+
 
 }
 
@@ -38,7 +94,13 @@
 /* ------------------- */
 
 
-@media (min-width: 850px) {
+@media (min-width: 769px) {
+
+    .descr > p, .compare > p {
+        line-height: 2rem;
+        margin-top: 2rem;
+    }
+
      .active {
         width: 20vw;
     }

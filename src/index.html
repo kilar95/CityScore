@@ -36,8 +36,8 @@
     <!-- JS -->
     <!-- <script src="js/main.js" defer></script> -->
     <script type="module" src="js/api/teleportAPI.js" defer></script>
-    <script type="module" src="js/views/searchBar.js" defer></script>
-    <script type="module" src="js/views/city.js" defer></script>
+    <script type="module" src="js/main.js" defer></script>
+    <script type="module" src="js/city.js" defer></script>
 
     <title>City Score - Best cities to live in</title>
 </head>
@@ -49,7 +49,6 @@
             <a class="logo" href="#">City Score</a>
             <nav id="main-nav" class="main-nav" data-visible="true">
                 <a href="#" class="nav-link">Home</a>
-                <a href="#" class="nav-link">All cities</a> <!-- da implementare -->
             </nav>
         </div>
 
@@ -67,6 +66,7 @@
 
         <main class="main">
             <section class="descr">
+                <img class='icon' src="./imgs/icons/green-city.png" alt="city icon">
                 <h2>Discover the best cities to live in!</h2>
                 <p>You can check the life quality score of <strong>266</strong> cities all around the world! <br>
                     The global rating is based on secondary scores such as housing, cost of living, safety, healthcare,
@@ -79,15 +79,10 @@
                 <span><i class="fa-solid fa-city"></i></span>
             </div>
               
-            <section class="classifica">
-                <div class="title">
-                    <h2>Top 3 cities:</h2>
-                </div>
-                <div class="top-3">
-                    <div class="box1"></div>
-                    <div class="box2"></div>
-                    <div class="box3"></div>
-                </div>
+            <section class="compare">
+                <img class='icon2' src="./imgs/icons/horizontal-bar-2.png" alt="chart icon">
+                <h2>Compare the results</h2>
+                <p>You can compare the scores of different cities in order to decide which is the place that suits your needs and find the city of your dreams!</p>
             </section>
         </main>
 
