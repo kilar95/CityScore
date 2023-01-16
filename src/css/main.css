@@ -56,10 +56,18 @@ p {
     padding-inline: 2rem;
 }
 
+/* descr section  */
+
 .descr {
     text-align: center;
     padding-inline: 15vw;
     padding-top: 3rem;
+}
+
+.title-score {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -68,10 +76,31 @@ p {
     line-height: 3rem;
 }
 
+.descr > h3 {
+    padding-bottom: 1rem;
+}
+
 .descr > p {
     line-height: 1.5rem;
     padding-bottom: 2rem;
 }
+
+.global-score {
+    width: 6vh;
+    padding: 1rem;
+    margin: 1rem;
+    border: 3px solid #34495e;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    color: #34495e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bolder;
+    font-size: larger;
+}
+
+/* compare section */
 
 .compare > p {
     line-height: 1.5rem;

@@ -13,8 +13,7 @@ export async function retrieveCitiesData () {
 
     return {
         data : citiesData,
-        getCitiesNames: () => citiesData.map(city => city.name),
-        getCitiesHrefs: () => citiesData.map(city => city.href),
+        getCitiesNames: () => citiesData.map(city => city.name)
     }
 }
 

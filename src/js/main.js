@@ -1,9 +1,9 @@
 import { retrieveCitiesData } from './api/teleportAPI.js';
 import City from './city.js';
+import ShowCity from './showCity.js';
 
 const apiData = await retrieveCitiesData();
 const citiesNames = apiData.getCitiesNames();
-const citiesHrefs = apiData.getCitiesHrefs();
 const searchInput = document.querySelector('.input');
 const resultsContainer = document.querySelector('.results');
 let hintBoxElements; // li elements inside hint box
@@ -71,12 +71,12 @@ function autocomplete(e) {
         hintBoxElements = document.querySelectorAll('li');
         citiesList = resultsContainer.querySelector('ul');
 
-        arrowKeysHandle(e.key, citiesList);
+        arrowKeysHandle(e, citiesList);
 
 
         // hint box events
         hintBoxElements.forEach(element => {
-            element.addEventListener('click', select);
+            element.addEventListener('click', selectChild);
         })
 
         if (suggestions) {
@@ -88,48 +88,76 @@ function autocomplete(e) {
 }
 
 
-function select(e) {
+function selectChild(e) {
     searchInput.value = e.target.innerHTML;
-    resultsContainer.setAttribute('hidden', true);
+    selectedChild = searchInput.value;
+    selectCity(selectedChild);
 }
 
 
 // handling keyboard events in the results box 
 
 let counter = 0;
+let selectedChild = '';
 
-function arrowKeysHandle(key, list) {
-    if (key === 'ArrowDown') {
+function arrowKeysHandle(e, list) {
+    if (e.key === 'ArrowDown') {
         if (counter < list.children.length) {
             list.children[counter].classList.add('selected');
             list.children[counter].scrollIntoView();
+            selectedChild = list.children[counter].innerHTML;
+
             counter++;
         } else {
-            list.children[counter-1].classList.add('selected');
+            list.children[counter - 1].classList.add('selected');
+            selectedChild = list.children[counter - 1].innerHTML;
+
             counter = counter - 1;
             return;
-        }        
-    } else if (key === 'ArrowUp') {
+        }
+    } else if (e.key === 'ArrowUp') {
         if (counter > 0) {
-            list.children[counter-1].classList.add('selected');
-            list.children[counter-1].scrollIntoView();
+            list.children[counter - 1].classList.add('selected');
+            list.children[counter - 1].scrollIntoView();
+            selectedChild = list.children[counter - 1].innerHTML;
+
             counter--;
         } else {
             counter = 0;
             list.children[0].classList.add('selected');
+            selectedChild = list.children[0].innerHTML;
+
+
             return;
         }
-    } else if (key == "Enter") {
-        const selectedChild = list.querySelector('selected').innerHTML;
-        console.log(selectedChild);
-        selectCity();
+    } else if (e.key == "Enter") {
+        selectCity(selectedChild);
     }
 }
 
 
 // retrieving data about a specific city 
+const icon = document.querySelector('.icon');
+const icon2 = document.querySelector('.icon2');
 
-function selectCity () {
 
+function selectCity(selectedCity) {
+    searchInput.value = '';
+    resultsContainer.setAttribute('hidden', true);
+    const city = new City(selectedCity);
+
+    city.getCityData()
+        .then(() => {
+            const showCity = new ShowCity();
+            showCity.displayMainTitle(city.name);
+            showCity.displayHeaderImg(city.desktopImage);
+            showCity.displayDescrTitle(city.nation, city.continent);
+            showCity.displaySummary(city.summary);
+            icon.style.display = "none";
+            icon2.style.display = "none";
+            showCity.globalScore.removeAttribute('hidden');
+            showCity.displayGlobalScore(city.globalScore.toFixed());
+        }
+        )
 }
 

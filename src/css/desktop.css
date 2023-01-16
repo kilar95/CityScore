@@ -13,6 +13,7 @@
         align-items: center;
     }
 
+
     .descr, .compare {
         text-align: start;
         max-width: 30vw;
@@ -20,6 +21,14 @@
         margin-bottom: 2rem;
     }
 
+    .title-score {
+        justify-content: start;
+    }
+
+    .descr > p {
+        max-height: 25vh;
+        overflow-y: scroll;
+    }
 
     .descr > p, .compare > p {
         margin-top: 2rem;
@@ -29,16 +38,8 @@
     .icon, .icon2 {
         float: left;
         position: relative;
-    }
-
-    .icon {
-        margin: 0 2rem 3rem 0;
-        top: 2rem;
-    }
-
-    .icon2 {
-        margin: 0 2rem 1rem 0;
         top: 1rem;
+        margin: 0 2rem 1.5rem 0;
     }
 
 }
@@ -68,6 +69,7 @@
         padding-inline: 1rem;
         margin-bottom: 2rem;
     }
+
 
     .descr h2, .compare h2 {
         line-height: 1.5;
