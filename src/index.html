@@ -33,8 +33,10 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
 
-    <!-- JS -->
-    <!-- <script src="js/main.js" defer></script> -->
+    <!-- Chart JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+     <!-- JS -->
     <script type="module" src="js/api/teleportAPI.js" defer></script>
     <script type="module" src="js/main.js" defer></script>
     <script type="module" src="js/city.js" defer></script>
@@ -68,25 +70,29 @@
             <section class="descr">
                 <img class='icon' src="./imgs/icons/green-city.png" alt="city icon">
                 <div class="title-score">
-                <h2 class="descr-title">Discover the best cities to live in!</h2>
-                <div class="global-score" hidden></div>
+                    <h2 class="descr-title">Discover the best cities to live in!</h2>
+                    <div class="global-score" hidden></div>
                 </div>
-                <h3 class="city-details"></h3>
-                <p class="descr-p">You can check the life quality score of <strong>266</strong> cities all around the world! <br>
+                <h3 class="city-details" hidden></h3>
+                <p class="descr-p">You can check the life quality score of <strong>266</strong> cities all around the
+                    world! <br>
                     The global rating is based on secondary scores such as housing, cost of living, safety, healthcare,
                     education, environmental quality, economy and more. </p>
             </section>
-    
+
             <div class="divider">
                 <div class="dividermask"></div>
                 <span><i class="fa-solid fa-city"></i></span>
             </div>
-              
+
             <section class="compare">
                 <img class='icon2' src="./imgs/icons/horizontal-bar-2.png" alt="chart icon">
                 <h2 class="compare-title">Compare the results</h2>
-                <p class="compare-p">You can compare the scores of different cities in order to decide which is the place that suits your needs and find the city of your dreams!</p>
-                <canvas class="chart"></canvas>
+                <p class="compare-p">If you want you can compare the scores of different cities in order to decide which is the
+                    place that suits your needs and find the city of your dreams!</p>
+                <div class="chart-container">
+                    <canvas class="chart" hidden></canvas>
+                </div>
             </section>
         </main>
 

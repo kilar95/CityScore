@@ -16,8 +16,5 @@
     "url": "https://github.com/kilar95/CityScore/issues"
   },
   "homepage": "https://github.com/kilar95/CityScore#readme",
-  "description": "",
-  "dependencies": {
-    "chart.js": "^4.1.2"
-  }
+  "description": ""
 }

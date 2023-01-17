@@ -1,4 +1,4 @@
-// import { Chart } from "./chart.js";
+// import { Chart } from "chart.js/dist";
 
 export default class ShowCity {
     constructor() {
@@ -8,7 +8,9 @@ export default class ShowCity {
         this.cityDetails = document.querySelector('.city-details');
         this.summary = document.querySelector('.descr-p');
         this.chartTitle = document.querySelector('.compare-title');
-        this.chartDiv = document.querySelector('.chart');
+        this.comparePar = document.querySelector('.compare-p');
+        this.chartContainer = document.querySelector('.chart-container');
+        this.chartCanvas = document.querySelector('.chart');
         this.globalScore = document.querySelector('.global-score');
     }
 
@@ -24,28 +26,60 @@ export default class ShowCity {
         this.descrTitle.innerHTML = 'Global Score: ';
         this.descrTitle.style.textDecoration = 'underline';
         this.cityDetails.innerHTML = `Nation: ${cityNation} <br> Continent: ${cityContinent}`;
+        this.cityDetails.removeAttribute('hidden');
     }
 
     displaySummary(summary) {
         this.summary.innerHTML = summary;
+        this.summary.style.overflowY = 'scroll';
     }
 
     displayGlobalScore(score) {
+        this.globalScore.classList.add('global-score-visible');
         this.globalScore.innerHTML = score;
+        this.globalScore.removeAttribute('hidden');
     }
 
     displayChartTitle() {
         this.chartTitle.innerHTML = 'Categories Scores';
+        this.chartTitle.style.textDecoration = 'underline';
     }
 
-    // displayChart() {
-    //     new Chart(this.chartDiv, {
-    //         type: 'bar',
-    //         data: {
-    //             labels: 
-    //         }
-    //     })
-    // }
+    displayChart(colors, labels, scores) {
+        this.comparePar.setAttribute('hidden', true);
+        this.chartCanvas.removeAttribute('hidden');
+        this.chartContainer.classList.add('chart-container-visible');
+                
+        const myChart = new Chart(this.chartCanvas, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Scores',
+                    data: scores,
+                    backgroundColor: colors,
+                    borderColor: colors,
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                elements: {
+                    bar: {
+                        borderWidth: 1,
+                    }
+                },
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        this.myChart = myChart;
+
+    }
 
 
 

@@ -2,13 +2,12 @@
 /*         Reset           */
 /* ----------------------- */
 
-
 *,
 *:before,
 *:after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 /* ------------------- */
@@ -31,11 +30,11 @@ h1 {
 }
 
 h2 {
-    font-size: 3.5vh;
+    font-size: 3vh;
 }
 
 p {
-    font-size: 2vh;
+    font-size: 1.7vh;
 }
 
 .container {
@@ -54,14 +53,15 @@ p {
     flex-direction: column;
     color: #34495e;
     padding-inline: 2rem;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2.5rem;
 }
 
 /* descr section  */
 
 .descr {
     text-align: center;
-    padding-inline: 15vw;
-    padding-top: 3rem;
 }
 
 .title-score {
@@ -71,27 +71,27 @@ p {
 }
 
 
-.descr > h2 {
-    margin-block: 1.5rem;
+.descr-title {
     line-height: 3rem;
+    padding-inline: 5vw;
 }
 
-.descr > h3 {
-    padding-bottom: 1rem;
+.city-details {
+    padding-block: 1rem;
 }
 
-.descr > p {
-    line-height: 1.5rem;
-    padding-bottom: 2rem;
+.descr-p {
+    padding: 1.5rem 5vw 2rem;
+    line-height: 2rem;
 }
 
-.global-score {
-    width: 6vh;
+.global-score-visible {
+    aspect-ratio: 1;
+    width: 5vh;
     padding: 1rem;
     margin: 1rem;
     border: 3px solid #34495e;
     border-radius: 50%;
-    aspect-ratio: 1;
     color: #34495e;
     display: flex;
     align-items: center;
@@ -102,18 +102,17 @@ p {
 
 /* compare section */
 
-.compare > p {
-    line-height: 1.5rem;
-    padding-bottom: 8rem;
-}
-
 .compare {
     text-align: center;
-    padding-inline: 15vw;
 }
 
-.compare h2 {
-    margin-bottom: 1.5rem;
+.compare-title {
+    padding-inline: 5vw;
+}
+
+.compare-p {
+    line-height: 2rem;
+    padding: 1.5rem 5vw 8rem;
 }
 
 .icon {
@@ -123,5 +122,16 @@ p {
 
 .icon2 {
     width: 10vh;
-    margin-block: 2.5rem 3rem;
+    margin: 1rem;
+}
+
+.chart-container-visible {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 80vw;
+    height: 40vh;
+    padding-top: 2rem;
+    padding-bottom: 8rem;
 }
