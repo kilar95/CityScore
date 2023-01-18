@@ -2,7 +2,8 @@
 /*      main content   */
 /* ------------------- */
 
-@media (min-width: 1024px) {
+
+@media (min-width: 1201px) {
     .container {
         height: 100vh;
     }
@@ -15,7 +16,7 @@
 
     .descr, .compare {
         text-align: start;
-        max-width: 30vw;
+        max-width: 35vw;
         padding-inline: 0;
         margin-bottom: 2rem;
     }
@@ -34,30 +35,11 @@
     }
 
     .chart-container-visible {
-        display: flex;
-        align-items: center;
-        justify-content: start;
-        position: relative;
-        width: 40vw;
-        height: 40vh;
-        padding-top: 2rem;
+        width: 35vw;
     }
-
-}
-
-@media (min-width: 1024px) and (max-width: 1200px)  {
-
-    .icon, .icon2 {
-        display: none;
-    }
-
-}
-
-@media (min-width: 1201px) {
 
     .descr > p {
         max-height: 25vh;
-        /* overflow-y: scroll; */
     }
 
     .icon, .icon2 {
@@ -77,10 +59,24 @@
 
 
 /* ------------------- */
+/*      search Bar      */
+/* ------------------- */
+@media (min-width: 1024px) {
+    .active {
+        width: 18vw;
+    }
+
+    .results {
+        width: 18vw;
+    }
+}
+
+
+/* ------------------- */
 /*      divider        */
 /* ------------------- */
 
-@media (min-width: 1024px) {
+@media (min-width: 1201px) {
 
     .divider span {
         display: none;

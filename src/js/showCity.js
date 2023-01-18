@@ -7,15 +7,12 @@ export default class ShowCity {
         this.descrTitle = document.querySelector('.descr-title');
         this.cityDetails = document.querySelector('.city-details');
         this.summary = document.querySelector('.descr-p');
-        this.chartTitle = document.querySelector('.compare-title');
-        this.comparePar = document.querySelector('.compare-p');
-        this.chartContainer = document.querySelector('.chart-container');
-        this.chartCanvas = document.querySelector('.chart');
+        this.chartContainer = document.querySelector('.compare');
         this.globalScore = document.querySelector('.global-score');
     }
 
     displayMainTitle(title) {
-        this.cityMainTitle.innerHTML = title;
+        this.cityMainTitle.innerHTML = title.charAt(0).toUpperCase() + title.slice(1);
     }
 
     displayHeaderImg(image) {
@@ -26,7 +23,7 @@ export default class ShowCity {
         this.descrTitle.innerHTML = 'Global Score: ';
         this.descrTitle.style.textDecoration = 'underline';
         this.cityDetails.innerHTML = `Nation: ${cityNation} <br> Continent: ${cityContinent}`;
-        this.cityDetails.removeAttribute('hidden');
+        this.cityDetails.hidden = false;
     }
 
     displaySummary(summary) {
@@ -37,20 +34,20 @@ export default class ShowCity {
     displayGlobalScore(score) {
         this.globalScore.classList.add('global-score-visible');
         this.globalScore.innerHTML = score;
-        this.globalScore.removeAttribute('hidden');
+        this.globalScore.hidden = false;
     }
 
-    displayChartTitle() {
-        this.chartTitle.innerHTML = 'Categories Scores';
-        this.chartTitle.style.textDecoration = 'underline';
-    }
 
-    displayChart(colors, labels, scores) {
-        this.comparePar.setAttribute('hidden', true);
-        this.chartCanvas.removeAttribute('hidden');
+    displayChart(colors, borderColors, labels, scores) {
+        this.chartContainer.innerHTML = `<div class='top-compare-container'> 
+        <h2 style="text-decoration: underline">Categories Scores</h2>
+        <div class="compare-cities"></div>
+        </div>
+        <canvas class="chart"></canvas>`
         this.chartContainer.classList.add('chart-container-visible');
+        this.chartCanvas = document.querySelector('.chart');
                 
-        const myChart = new Chart(this.chartCanvas, {
+        let myChart = new Chart(this.chartCanvas, {
             type: 'bar',
             data: {
                 labels: labels,
@@ -58,7 +55,7 @@ export default class ShowCity {
                     label: 'Scores',
                     data: scores,
                     backgroundColor: colors,
-                    borderColor: colors,
+                    borderColor: borderColors,
                 }]
             },
             options: {
@@ -77,10 +74,19 @@ export default class ShowCity {
             }
         });
 
-        this.myChart = myChart;
+        this.chart = myChart;
 
     }
 
+    displayCompareSearchBar() {
+        this.compareCitiesDiv = document.querySelector('.compare-cities');
+        this.compareCitiesDiv.innerHTML = `<label for='compare-input' style='font-weight: bold;'> Compare with: </label>
+        <input type='search' name='compare-input' class='compare-input' placeholder='Add another city...'></input>
+        <div class='add-icon'> <i class="fa-solid fa-plus"></i> </div>
+        <div class='remove-icon'> <i class="fa-solid fa-xmark"></i> </div>
+        <div class='results-container'></div>`;
+    }
+    
 
 
 }

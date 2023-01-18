@@ -4,23 +4,23 @@ const apiData = await retrieveCitiesData();
 
 export default class City {
   constructor(name) {
-    this.name = name;
+    this.name = name.charAt(0).toUpperCase() + name.slice(1); 
+    this.href = (apiData.data.find(city => city.name.toLowerCase() == this.name.toLowerCase())).href;
   }
 
   async getCityData() {
-    const city = apiData.data.find(city => city.name.toLowerCase() == this.name.toLowerCase());
-
     // fetch full name and scores Href
 
-    const response = await fetch(city.href);
+    const response = await fetch(this.href);
+
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
     const json = await response.json();
-    console.log(json);
     this.fullName = json.full_name;
     this.nation = this.fullName.replace(`${this.name}, `, '');
+
     this.continent = json.continent;
     this.scoresHref = json._links['ua:scores'].href;
     this.imgHref = json._links['ua:images'].href;
@@ -37,7 +37,6 @@ export default class City {
     this.summary = scoresJson.summary;
     this.globalScore = scoresJson.teleport_city_score;
     this.categories = scoresJson.categories;
-    console.log(this.categories);
 
     // fetch city image 
     const imgResponse = await fetch(this.imgHref);
@@ -46,13 +45,7 @@ export default class City {
     }
 
     const imgJson = await imgResponse.json();
-    this.desktopImage = imgJson.photos[0].image.web;
-    this.mobileImage = imgJson.photos[0].image.mobile;
+    this.image = imgJson.photos[0].image.web;
 
   }
 }
-
-// const rome = new City('Rome');
-// rome.getCityData();
-
-// console.log(rome);

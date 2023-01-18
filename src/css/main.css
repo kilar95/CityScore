@@ -55,7 +55,7 @@ p {
     padding-inline: 2rem;
     align-items: center;
     justify-content: center;
-    padding-top: 2.5rem;
+    padding-top: 3rem;
 }
 
 /* descr section  */
@@ -125,13 +125,20 @@ p {
     margin: 1rem;
 }
 
-.chart-container-visible {
+.top-compare-container {
     display: flex;
     align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 80vw;
-    height: 40vh;
-    padding-top: 2rem;
-    padding-bottom: 8rem;
+    justify-content: space-around;
+    flex-direction: row;
+    column-gap: 3rem;
 }
+
+.chart-container-visible {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3rem;
+    align-items: center;
+    justify-content: center;
+    width: 80vw;
+}
+

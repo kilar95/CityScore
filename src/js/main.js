@@ -19,7 +19,7 @@ searchInput.addEventListener('keyup', (e) => {
         autocomplete(e);
     } else {
         setTimeout(removeActive, 5000);
-        resultsContainer.setAttribute('hidden', true);
+        resultsContainer.hidden = true;
     }
 });
 document.addEventListener('click', (e) => {
@@ -46,8 +46,8 @@ function removeActive() {
     if (searchInput.classList.contains('active')) {
         searchInput.classList.remove('active');
         searchInput.value = '';
-        resultsContainer.setAttribute('hidden', true);
         searchInput.blur();
+        resultsContainer.hidden = true;
     }
 }
 
@@ -80,9 +80,9 @@ function autocomplete(e) {
         })
 
         if (suggestions) {
-            resultsContainer.removeAttribute('hidden');
+            resultsContainer.hidden = false;
         } else {
-            resultsContainer.setAttribute('hidden', true);
+            resultsContainer.hidden = true;
         }
     }
 }
@@ -101,6 +101,7 @@ let counter = 0;
 let selectedChild = '';
 
 function arrowKeysHandle(e, list) {
+
     if (e.key === 'ArrowDown') {
         if (counter < list.children.length) {
             list.children[counter].classList.add('selected');
@@ -126,12 +127,17 @@ function arrowKeysHandle(e, list) {
             counter = 0;
             list.children[0].classList.add('selected');
             selectedChild = list.children[0].innerHTML;
-
-
-            return;
         }
-    } else if (e.key == "Enter") {
-        selectCity(selectedChild);
+    } else if (e.key === "Enter") {
+        if (selectedChild) {
+            console.log('selected child gia esiste');
+            selectCity(selectedChild);
+        } else {
+            console.log('selected child non esiste');
+            selectedChild = searchInput.value;
+            selectCity(selectedChild);
+        }
+
     }
 }
 
@@ -142,38 +148,49 @@ const icon2 = document.querySelector('.icon2');
 
 
 function selectCity(selectedCity) {
-    resultsContainer.setAttribute('hidden', true);
+    try {
+        selectedChild = '';
+        const city = new City(selectedCity);
+
+        city.getCityData()
+            .then(() => {
+                resultsContainer.hidden = true;
+                const showCity = new ShowCity();
+                // showCity.destroyChart();
+                showCity.displayMainTitle(city.name);
+                showCity.displayHeaderImg(city.image);
+                showCity.displayDescrTitle(city.nation, city.continent);
+                showCity.displaySummary(city.summary);
+                icon.style.display = "none";
+                icon2.style.display = "none";
+                showCity.displayGlobalScore(city.globalScore.toFixed());
+
+                //let's apply an alpha value to every color of the bar chart
+                const colorsNoAlpha = city.categories.map(elem => elem.color);
+
+                let alpha = 0.6;
+                let newColors = colorsNoAlpha.map(color => {
+                    let r = parseInt(color.substring(1, 3), 16);
+                    let g = parseInt(color.substring(3, 5), 16);
+                    let b = parseInt(color.substring(5, 7), 16);
+                    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+                });
+
+                const labels = city.categories.map(elem => elem.name);
+                const scores = city.categories.map(elem => elem.score_out_of_10);
+                showCity.displayChart(newColors, colorsNoAlpha, labels, scores);
+                showCity.displayCompareSearchBar();
+            }
+            )
+    } catch (err) {
+        searchInput.setCustomValidity('City name not valid');
+        searchInput.reportValidity();
+        
+        setTimeout(() => searchInput.blur(), 1500);
+    }
+
     searchInput.value = '';
-    const city = new City(selectedCity);
 
-    city.getCityData()
-        .then(() => {
-            const showCity = new ShowCity();
-            showCity.displayMainTitle(city.name);
-            showCity.displayHeaderImg(city.desktopImage);
-            showCity.displayDescrTitle(city.nation, city.continent);
-            showCity.displaySummary(city.summary);
-            icon.style.display = "none";
-            icon2.style.display = "none";
-            showCity.displayGlobalScore(city.globalScore.toFixed());
-
-            showCity.displayChartTitle();
-            
-            const colorsNoAlpha = city.categories.map(elem => elem.color);
-
-            //let's apply an alpha value to every color of the bar chart
-            let alpha = 0.7;
-            let newColors = colorsNoAlpha.map(color => {
-                let r = parseInt(color.substring(1, 3), 16);
-                let g = parseInt(color.substring(3, 5), 16);
-                let b = parseInt(color.substring(5, 7), 16);
-                return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-            });
-
-            const labels = city.categories.map(elem => elem.name);
-            const scores = city.categories.map(elem => elem.score_out_of_10);
-            showCity.displayChart(newColors, labels, scores);
-        }
-        )
 }
+
 
