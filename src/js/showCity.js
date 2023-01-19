@@ -1,4 +1,4 @@
-// import { Chart } from "chart.js/dist";
+let myMediaQuery = window.matchMedia('(min-width: 768px)');
 
 export default class ShowCity {
     constructor() {
@@ -46,47 +46,56 @@ export default class ShowCity {
         <canvas class="chart"></canvas>`
         this.chartContainer.classList.add('chart-container-visible');
         this.chartCanvas = document.querySelector('.chart');
-                
+
         let myChart = new Chart(this.chartCanvas, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Scores',
-                    data: scores,
-                    backgroundColor: colors,
-                    borderColor: borderColors,
-                }]
-            },
-            options: {
-                indexAxis: 'y',
-                elements: {
-                    bar: {
-                        borderWidth: 1,
-                    }
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: `${this.cityMainTitle.innerHTML}`,
+                        data: scores,
+                        backgroundColor: colors,
+                        borderColor: borderColors,
+                    }]
                 },
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
-            }
-        });
+            }); 
 
         this.chart = myChart;
+        this.chartContainer.style.marginBottom = '5rem';
 
     }
 
     displayCompareSearchBar() {
         this.compareCitiesDiv = document.querySelector('.compare-cities');
         this.compareCitiesDiv.innerHTML = `<label for='compare-input' style='font-weight: bold;'> Compare with: </label>
-        <input type='search' name='compare-input' class='compare-input' placeholder='Add another city...'></input>
-        <div class='add-icon'> <i class="fa-solid fa-plus"></i> </div>
+        <input type='text' name='compare-input' class='compare-input'>
         <div class='remove-icon'> <i class="fa-solid fa-xmark"></i> </div>
-        <div class='results-container'></div>`;
+        <div class='compare-hints'></div>`;
     }
-    
 
+    addCityToChart(newCityName, newScores, global) {
+        const newChartData = {
+            label: `${newCityName}, Global Score: ${global}`,
+            data: newScores,
+            backgroundColor: 'rgba(122, 122, 122, .5)',
+            borderColor: 'rgba(122, 122, 122, 1)',
+        };
+
+        this.chart.config.data.datasets.push(newChartData);
+        this.chart.update();
+    }
+
+    removeCityfromChart() {
+        this.chart.config.data.datasets.pop();
+        this.chart.update();
+    }
 
 }

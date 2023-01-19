@@ -4,11 +4,17 @@ import ShowCity from './showCity.js';
 
 const apiData = await retrieveCitiesData();
 const citiesNames = apiData.getCitiesNames();
-const searchInput = document.querySelector('.input');
-const resultsContainer = document.querySelector('.results');
-let hintBoxElements; // li elements inside hint box
-let citiesList; // ul element inside hint box
+const showCity = new ShowCity(); // city displayed on the page
 
+
+const searchInput = document.querySelector('.input');
+const searchIcon = document.querySelector('.fa-magnifying-glass');
+const resultsContainer = document.querySelector('.results');
+let hintBoxElements; // li elements inside main hint box
+let citiesList; // ul element inside main hint box
+let compareResults; // compare section hint box
+let compareCitySearchInput; // compare section input
+let removeIcon;
 
 // search bar events
 
@@ -38,6 +44,7 @@ function setActive() {
         return;
     } else {
         searchInput.classList.add('active');
+        searchIcon.style.visibility = 'hidden';
         searchInput.focus();
     }
 }
@@ -47,6 +54,7 @@ function removeActive() {
         searchInput.classList.remove('active');
         searchInput.value = '';
         searchInput.blur();
+        searchIcon.style.visibility = 'visible';
         resultsContainer.hidden = true;
     }
 }
@@ -67,9 +75,19 @@ function autocomplete(e) {
             return `<li>${city}</li>`
         }).join('');
 
-        resultsContainer.innerHTML = `<ul>${suggestions}</ul>`;
-        hintBoxElements = document.querySelectorAll('li');
-        citiesList = resultsContainer.querySelector('ul');
+        if (e.target == searchInput) {
+            resultsContainer.innerHTML = `<ul>${suggestions}</ul>`;
+            suggestions ? resultsContainer.hidden = false : resultsContainer.hidden = true;
+            hintBoxElements = resultsContainer.querySelectorAll('li');
+            citiesList = resultsContainer.querySelector('ul');
+        } else {
+            compareResults = document.querySelector('.compare-hints');
+            compareResults.innerHTML = `<ul>${suggestions}</ul>`;
+            suggestions ? compareResults.hidden = false : compareResults.hidden = true;
+            hintBoxElements = compareResults.querySelectorAll('li');
+            citiesList = compareResults.querySelector('ul');
+        }
+
 
         arrowKeysHandle(e, citiesList);
 
@@ -79,19 +97,16 @@ function autocomplete(e) {
             element.addEventListener('click', selectChild);
         })
 
-        if (suggestions) {
-            resultsContainer.hidden = false;
-        } else {
-            resultsContainer.hidden = true;
-        }
     }
 }
 
 
 function selectChild(e) {
-    searchInput.value = e.target.innerHTML;
-    selectedChild = searchInput.value;
-    selectCity(selectedChild);
+    if (resultsContainer.contains(e.target)) {
+        selectCity(e.target.innerHTML);
+    } else {
+        compareCityHandle(e.target.innerHTML);
+    }
 }
 
 
@@ -129,15 +144,27 @@ function arrowKeysHandle(e, list) {
             selectedChild = list.children[0].innerHTML;
         }
     } else if (e.key === "Enter") {
-        if (selectedChild) {
-            console.log('selected child gia esiste');
-            selectCity(selectedChild);
-        } else {
-            console.log('selected child non esiste');
-            selectedChild = searchInput.value;
-            selectCity(selectedChild);
-        }
 
+        switch (e.target) {
+            case searchInput:
+                if (selectedChild) {
+                    selectCity(selectedChild);
+                } else {
+                    selectedChild = searchInput.value;
+                    selectCity(selectedChild);
+                }
+                break;
+            case compareCitySearchInput:
+                if (selectedChild) {
+                    compareCityHandle(selectedChild);
+                } else {
+                    selectedChild = compareCitySearchInput.value;
+                    compareCityHandle(selectedChild)
+                }
+                break;
+            default:
+                return;
+        }
     }
 }
 
@@ -155,8 +182,6 @@ function selectCity(selectedCity) {
         city.getCityData()
             .then(() => {
                 resultsContainer.hidden = true;
-                const showCity = new ShowCity();
-                // showCity.destroyChart();
                 showCity.displayMainTitle(city.name);
                 showCity.displayHeaderImg(city.image);
                 showCity.displayDescrTitle(city.nation, city.continent);
@@ -180,12 +205,33 @@ function selectCity(selectedCity) {
                 const scores = city.categories.map(elem => elem.score_out_of_10);
                 showCity.displayChart(newColors, colorsNoAlpha, labels, scores);
                 showCity.displayCompareSearchBar();
-            }
-            )
+
+                // adding event listeners to compare search bar 
+                compareCitySearchInput = document.querySelector('.compare-input');
+                compareResults = document.querySelector('.compare-hints');
+                removeIcon = document.querySelector('.remove-icon');
+
+
+                compareCitySearchInput.addEventListener('keyup', (e) => {
+                    if (e.target.value) {
+                        autocomplete(e);
+                    } else {
+                        compareResults.hidden = true;
+                    }
+                });
+                document.addEventListener('click', (e) => {
+                    if (e.target !== compareCitySearchInput &&
+                        !compareCitySearchInput.contains(e.target) &&
+                        !compareResults.contains(e.target)) {
+                        compareResults.hidden = true;
+                    }
+                })
+
+            })
     } catch (err) {
         searchInput.setCustomValidity('City name not valid');
         searchInput.reportValidity();
-        
+
         setTimeout(() => searchInput.blur(), 1500);
     }
 
@@ -193,4 +239,39 @@ function selectCity(selectedCity) {
 
 }
 
+function compareCityHandle(selectedCity) {
+
+    try {
+        selectedChild = '';
+        const newCity = new City(selectedCity);
+
+        newCity.getCityData()
+            .then(() => {
+                compareResults.hidden = true;
+                const newScores = newCity.categories.map(elem => elem.score_out_of_10);
+
+                showCity.addCityToChart(newCity.name, newScores, newCity.globalScore.toFixed());
+                compareCitySearchInput.value = newCity.name;
+                compareCitySearchInput.setAttribute('readonly', true);
+                compareCitySearchInput.style.backgroundColor = '#7a7a7a';
+                compareCitySearchInput.style.color = 'white';
+
+                removeIcon.addEventListener('click', removeCity);
+            });
+    } catch (err) {
+        compareCitySearchInput.setCustomValidity('City name not valid');
+        compareCitySearchInput.reportValidity();
+
+        setTimeout(() => compareCitySearchInput.blur(), 1500);
+    }
+
+}
+
+function removeCity() {
+    showCity.removeCityfromChart();
+    compareCitySearchInput.value = '';
+    compareCitySearchInput.removeAttribute('readonly');
+    compareCitySearchInput.style.backgroundColor = '#fff';
+    compareCitySearchInput.style.color = '#34495e';
+}
 
