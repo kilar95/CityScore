@@ -1,4 +1,3 @@
-let myMediaQuery = window.matchMedia('(min-width: 768px)');
 
 export default class ShowCity {
     constructor() {
