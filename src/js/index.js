@@ -1,11 +1,21 @@
-// import '../css/index.css';
-// import '../css/navbar.css';
-// import '../css/header.css';
-// import '../css/searchBar.css'
-// import '../css/divider.css'
-// import '../css/compareSearchBar.css'
-// import '../css/footer.css'
-// import '../css/desktop.css'
+// importing css files 
+import '../css/index.css';
+import '../css/navbar.css';
+import '../css/header.css';
+import '../css/searchBar.css';
+import '../css/divider.css';
+import '../css/compareSearchBar.css';
+import '../css/footer.css';
+import '../css/desktop.css';
+
+// importing images and setting src
+import greenCity from '../assets/icons/green-city.png';
+import bar from '../assets/icons/horizontal-bar-2.png';
+
+const icon = document.querySelector('.icon');
+const icon2 = document.querySelector('.icon2');
+icon.src = greenCity;
+icon2.src = bar;
 
 
 import { retrieveCitiesData } from './api/teleportAPI.js';
@@ -179,9 +189,6 @@ function arrowKeysHandle(e, list) {
 
 
 // retrieving data about a specific city 
-const icon = document.querySelector('.icon');
-const icon2 = document.querySelector('.icon2');
-
 
 function selectCity(selectedCity) {
     try {

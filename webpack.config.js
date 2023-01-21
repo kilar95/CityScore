@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { PassThrough } = require('stream');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -9,13 +10,15 @@ module.exports = {
     devtool: 'eval-cheap-module-source-map',
     entry: {
         main: path.resolve(__dirname, './src/js/index.js'),
-        // api: './src/js/api/teleportAPI.js',
-        // city: './src/js/city.js',
-        // showcity: './src/js/showCity.js'
+        api: './src/js/api/teleportAPI.js',
+        city: './src/js/city.js',
+        showcity: './src/js/showCity.js'
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name][contenthash].js',
+        clean: true,
+        assetModuleFilename: '[name][ext]'
     },
     devServer: {
         static: {
@@ -29,11 +32,11 @@ module.exports = {
     },
     module: {
         rules: [
-            {
-                test: /\.html$/i,
-                loader: "html-loader",
-                options: { minimize: true },
-            },
+            // {
+            //     test: /\.html$/i,
+            //     loader: "html-loader",
+            //     options: { minimize: true },
+            // },
             {
                 test: /\.css$/,
                 use: [
@@ -61,16 +64,7 @@ module.exports = {
             },
             {
                 test: /\.(png|jpe?g|gif|svg|bmp|webp)$/i,
-                use: [
-                  {
-                    loader: 'url-loader',
-                    options: {
-                      name: '[name].[contenthash:8].[ext]',
-                      limit: 4096,
-                      outputPath: 'assets',
-                    },
-                  },
-                ],
+                type: 'asset/resource',
               },
         ]
     },
@@ -86,9 +80,4 @@ module.exports = {
     experiments: {
         topLevelAwait: true
     },
-    resolve: {
-        extensions: [
-            '.js' 
-        ]
-      }
 }
