@@ -34,11 +34,19 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
 
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- Lodash -->
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
     <!-- Chart JS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-     <!-- JS -->
+    <!-- JS -->
     <script type="module" src="./js/index.js" defer></script>
+    <script type='module' src="./js/api/teleportAPI.js"></script>
+    <script type='module' src="./js/city.js"></script>
+    <script type='module' src="./js/showCity.js"></script>
+
 
     <title>City Score - Best cities to live in</title>
 </head>
@@ -87,7 +95,8 @@
             <section class="compare">
                 <img class='icon2' src="./imgs/icons/horizontal-bar-2.png" alt="chart icon">
                 <h2 class="compare-title">Compare the results</h2>
-                <p class="compare-p">If you want you can compare the scores of different cities in order to decide which is the
+                <p class="compare-p">If you want you can compare the scores of different cities in order to decide which
+                    is the
                     place that suits your needs and find the city of your dreams!</p>
             </section>
         </main>
@@ -99,6 +108,8 @@
     </div>
 
 
+    
+    
 </body>
 
 </html>

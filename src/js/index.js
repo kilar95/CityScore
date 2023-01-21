@@ -1,3 +1,12 @@
+// import '../css/index.css';
+// import '../css/navbar.css';
+// import '../css/header.css';
+// import '../css/searchBar.css'
+// import '../css/divider.css'
+// import '../css/compareSearchBar.css'
+// import '../css/footer.css'
+// import '../css/desktop.css'
+
 
 import { retrieveCitiesData } from './api/teleportAPI.js';
 import City from './city.js';
@@ -6,7 +15,6 @@ import ShowCity from './showCity.js';
 const apiData = await retrieveCitiesData();
 const citiesNames = apiData.getCitiesNames();
 const showCity = new ShowCity(); // city displayed on the page
-
 
 const searchInput = document.querySelector('.input');
 const searchIcon = document.querySelector('.fa-magnifying-glass');

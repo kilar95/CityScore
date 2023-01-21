@@ -1,32 +1,32 @@
 const path = require('path');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 
 module.exports = {
-    mode: 'production',
-    devtool: 'source-map',
+    mode: 'development',
+    devtool: 'eval-cheap-module-source-map',
     entry: {
-        main: './src/js/index.js'
+        main: path.resolve(__dirname, './src/js/index.js'),
         // api: './src/js/api/teleportAPI.js',
         // city: './src/js/city.js',
         // showcity: './src/js/showCity.js'
     },
     output: {
-        filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'build')
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name][contenthash].js',
     },
-    plugins: [
-        new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: path.resolve(__dirname, './src/index.html'),
-        }),
-        // new MiniCssExtractPlugin({
-        //     filename: '[name].[contenthash].css',
-        // }),
-    ],
+    devServer: {
+        static: {
+            directory: path.resolve(__dirname, 'dist'),
+        },
+        port: 3000,
+        open: true,
+        hot: true,
+        compress: true,
+        historyApiFallback: true,
+    },
     module: {
         rules: [
             {
@@ -36,36 +36,59 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader']
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            url: true,
+                            import: true,
+                            modules: false,
+                        },
+                    },
+                ],
             },
             {
-                test: /\.(js|jsx)$/,
+                test: /\.js$/,
                 exclude: /[\\/]node_modules[\\/]/,
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env'],
-                        plugins: ['@babel/plugin-proposal-class-properties',
-                            '@babel/plugin-transform-runtime'],
+                        cacheDirectory: true,
+                        configFile: path.resolve(__dirname, 'babel.config.js'),
                     }
                 },
             },
-            // {
-            //     test: /\.(png|svg|jpg|jpeg|gif)$/i,
-            //     type: 'asset/resource',
-            // },
+            {
+                test: /\.(png|jpe?g|gif|svg|bmp|webp)$/i,
+                use: [
+                  {
+                    loader: 'url-loader',
+                    options: {
+                      name: '[name].[contenthash:8].[ext]',
+                      limit: 4096,
+                      outputPath: 'assets',
+                    },
+                  },
+                ],
+              },
         ]
     },
-    devServer: {
-        port: 5000,
-        open: {
-            app: {
-                name: 'chrome'
-            }
-        },
-        static: path.resolve(__dirname, 'dist')
-    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, './src/index.html'),
+            filename: 'index.html',
+        }),
+        new MiniCssExtractPlugin({
+            filename: '[name].[contenthash].css',
+        }),
+    ],
     experiments: {
         topLevelAwait: true
-    }
+    },
+    resolve: {
+        extensions: [
+            '.js' 
+        ]
+      }
 }
