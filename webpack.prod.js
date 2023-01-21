@@ -6,8 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 
 module.exports = {
-    mode: 'development',
-    devtool: 'eval-cheap-module-source-map',
+    mode: 'production',
     entry: {
         main: path.resolve(__dirname, './src/js/index.js'),
         api: './src/js/api/teleportAPI.js',
@@ -20,22 +19,12 @@ module.exports = {
         clean: true,
         assetModuleFilename: '[name][ext]'
     },
-    devServer: {
-        static: {
-            directory: path.resolve(__dirname, 'dist'),
-        },
-        port: 3000,
-        open: true,
-        hot: true,
-        compress: true,
-        historyApiFallback: true,
-    },
     module: {
         rules: [
             {
                 test: /\.css$/,
                 use: [
-                    'style-loader',
+                    MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
                         options: {
@@ -67,6 +56,16 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './src/index.html'),
             filename: 'index.html',
+            minify: {
+                collapseWhitespace: true,
+                removeComments: true,
+                removeRedundantAttributes: true,
+                removeStyleLinkTypeAttributes: true,
+                useShortDoctype: true,
+                minifyJS: true,
+                minifyCSS: true,
+                minifyURLs: true,
+              },
         }),
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css',
