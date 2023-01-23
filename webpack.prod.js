@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { PassThrough } = require('stream');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+import ogImage from '../assets/og-image.png';
 
 
 module.exports = {
@@ -66,6 +67,9 @@ module.exports = {
                 minifyCSS: true,
                 minifyURLs: true,
               },
+            meta: {
+                'og:image': { property: 'og:image', content: 'https://city-score.netlify.app/src/assets/og-image.png' },
+            }
         }),
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css',
