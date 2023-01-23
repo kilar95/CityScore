@@ -10,7 +10,7 @@
 .compare-input {
     cursor: pointer;
     padding: 5px;
-    width: 20vw;
+    width: 25vw;
     height: 2rem;
     border: 3px solid #fff;
     color: #34495e;
@@ -37,7 +37,7 @@
     top: 3.4rem;
     z-index: 1;
     pointer-events: auto;
-    width: 20vw;
+    width: 25vw;
     max-height: 150px;
     background-color: #fff;
     box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
