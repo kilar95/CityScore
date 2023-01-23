@@ -65,9 +65,6 @@ module.exports = {
                 minifyCSS: true,
                 minifyURLs: true,
               },
-            meta: {
-                'og:image': { property: 'og:image', content: 'https://city-score.netlify.app/src/assets/og-image.png' },
-            }
         }),
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css',
