@@ -63,7 +63,7 @@
 
 ![Product Name Screen Shot][product-screenshot]
 
-This project was created for the start2impact Javascript Advanced course.
+This project was created for the start2impact Javascript Advanced course. <br>
 You can try the web app on Netlify, clicking on the following link: <a href= "https://city-score.netlify.app/"> City Score </a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -80,7 +80,7 @@ You can try the web app on Netlify, clicking on the following link: <a href= "ht
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To get a local copy up and running follow these simple example steps.
+To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
