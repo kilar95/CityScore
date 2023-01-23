@@ -11,6 +11,7 @@ import '../css/desktop.css';
 // importing images and setting src
 import greenCity from '../assets/icons/green-city.png';
 import bar from '../assets/icons/horizontal-bar-2.png';
+import ogImage from '../assets/og-image.png';
 
 const icon = document.querySelector('.icon');
 const icon2 = document.querySelector('.icon2');
