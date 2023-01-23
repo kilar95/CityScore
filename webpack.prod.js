@@ -3,8 +3,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { PassThrough } = require('stream');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-import ogImage from '../assets/og-image.png';
-
 
 module.exports = {
     mode: 'production',
