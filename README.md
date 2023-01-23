@@ -1,6 +1,5 @@
 <a name="readme-top"></a>
 
-[![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
@@ -13,7 +12,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/kilar95/CityScore">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://user-images.githubusercontent.com/104167965/214048722-6852a762-0ab5-47d9-9497-980075d4f4c9.svg" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">City Score</h3>
@@ -61,7 +60,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]]
+![Product Name Screen Shot][product-screenshot]
 
 This project was created for the start2impact Javascript Advanced course.
 You can try the web app on Netlify, clicking on the following link: <a href= "https://city-score.netlify.app/"> City Score </a>
@@ -113,7 +112,13 @@ After installing Node you are ready to go!
 Use the app to check the life quality score of more than 260 cities all around the world. 
 Each city has a global score which is based on 17 different secondary scores, such as housing, cost of living, startups, safety, healthcare, education and economy.
 
+
+<img src="https://user-images.githubusercontent.com/104167965/214049346-772f7569-96d0-46c9-814c-ddacbbb285b3.PNG" width="600">
+
 You can also compare the scores of two different cities using the search bar in the 'Categories Scores' section.
+
+
+<img src="https://user-images.githubusercontent.com/104167965/214049375-dba8fdb5-36c8-4f16-8802-0890b18e0500.PNG" width="600">
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
