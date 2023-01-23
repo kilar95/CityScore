@@ -12,7 +12,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/kilar95/CityScore">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://user-images.githubusercontent.com/104167965/214048722-6852a762-0ab5-47d9-9497-980075d4f4c9.svg" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">City Score</h3>
@@ -60,9 +60,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]]
+![Product Name Screen Shot][product-screenshot]
 
-This project was created for the start2impact Javascript Advanced course.
+This project was created for the start2impact Javascript Advanced course. <br>
 You can try the web app on Netlify, clicking on the following link: <a href= "https://city-score.netlify.app/"> City Score </a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -79,7 +79,7 @@ You can try the web app on Netlify, clicking on the following link: <a href= "ht
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To get a local copy up and running follow these simple example steps.
+To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
@@ -112,7 +112,13 @@ After installing Node you are ready to go!
 Use the app to check the life quality score of more than 260 cities all around the world. 
 Each city has a global score which is based on 17 different secondary scores, such as housing, cost of living, startups, safety, healthcare, education and economy.
 
+
+<img src="https://user-images.githubusercontent.com/104167965/214049346-772f7569-96d0-46c9-814c-ddacbbb285b3.PNG" width="600">
+
 You can also compare the scores of two different cities using the search bar in the 'Categories Scores' section.
+
+
+<img src="https://user-images.githubusercontent.com/104167965/214049375-dba8fdb5-36c8-4f16-8802-0890b18e0500.PNG" width="600">
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -165,14 +171,16 @@ Use this space to list resources you find helpful and would like to give credit 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/kilar95/CityScore.svg?style=for-the-badge
+[contributors-url]: https://github.com/kilar95/CityScore/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/kilar95/CityScore.svg?style=for-the-badge
 [forks-url]: https://github.com/kilar95/CityScore/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/kilar95/CityScore.svg?style=for-the-badge
 [stars-url]: https://github.com/kilar95/CityScore/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/kilar95/CityScore.svg?style=for-the-badge
 [issues-url]: https://github.com/kilar95/CityScore/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[license-shield]: https://img.shields.io/github/license/kilar95/CityScore.svg?style=for-the-badge
+[license-url]: https://github.com/kilar95/CityScore/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/ilaria-bertoldi-837a20176/
 [product-screenshot]: ./src/assets/og-image.PNG
