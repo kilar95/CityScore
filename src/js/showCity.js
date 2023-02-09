@@ -27,7 +27,7 @@ export default class ShowCity {
 
     displaySummary(summary) {
         this.summary.innerHTML = summary;
-        this.summary.style.overflowY = 'scroll';
+        this.summary.style.overflowY = 'auto';
     }
 
     displayGlobalScore(score) {
